@@ -2,7 +2,7 @@
 var sButton = document.querySelector("#sButton");
 var timer = document.querySelector("#timer");
 var quizContainer = document.querySelector("#quiz");
-var resultsContainer = documern.querySelector("#results");
+var resultsContainer = document.querySelector("#results");
 
 var secondsLeft = 60;
 
@@ -29,7 +29,44 @@ sButton.addEventListener("click", function gameTimer()  {
         //displays scoreboard with buttons to chose "Go back" or "Clear high scores"
 //**ensure it adapts to multiple screen sizes
 
-function buildQuiz(){}
+function buildQuiz(){
+    //variable to store the html output
+    const output = [];
+
+    //for each question...
+    myQuestions.forEach(
+        (currentQuestion, questionNumber) => {
+
+            //variable to store the list of possible answers
+            const answers = [];
+
+            //and for each availble answer...
+            for(letter in currentQuestion.answers){
+
+                //...add and HTML radio button
+                answers.push(
+                    `<label>
+                        <input type="radio" name="question${questionNumber}" value="${letter}">
+                        ${letter} :
+                        ${currentQuestion.answers[letter]}
+                    </label>`
+                );
+            }
+
+            //add this question and its answers to the output
+            output.push(
+                `<div class="question"> ${currentQuestion.question} </div>
+                <div class="answers"> ${answers.join('')} </div>`
+            );
+        }
+    );
+
+    //combine output list into one string of HTML and put in on the page
+    quizContainer.innerHTML = output.join('');
+    console.log(output);
+}
+
+
 
 function showResults(){}
 
