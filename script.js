@@ -1,6 +1,8 @@
 //start button that begins the game
 var sButton = document.querySelector("#sButton");
 var timer = document.querySelector("#timer");
+var quizContainer = document.querySelector("#quiz");
+var resultsContainer = documern.querySelector("#results");
 
 var secondsLeft = 60;
 
@@ -26,3 +28,64 @@ sButton.addEventListener("click", function gameTimer()  {
     //prompt box with intitial and submit button
         //displays scoreboard with buttons to chose "Go back" or "Clear high scores"
 //**ensure it adapts to multiple screen sizes
+
+function buildQuiz(){}
+
+function showResults(){}
+
+buildQuiz();
+
+submitButton.addEventListener("click", showResults);
+
+var myQuestions = [
+    {
+        Question1: "question1",
+        answers: {
+            A: "a",
+            B: "b",
+            C: "c",
+            D: "d"  
+        },
+        correctAnswer: "idkyet"
+    },
+    {
+        Question2: "question2",
+        answers: {
+            A: "a",
+            B: "b",
+            C: "c",
+            D: "d"
+        },
+        correctAnswer: "idkyet"
+    },
+    {
+        Question2: "question3",
+        answers: {
+            A: "a",
+            B: "b",
+            C: "c",
+            D: "d"
+        },
+        correctAnswer: "idkyet"
+    },
+    {
+        Question2: "question4",
+        answers: {
+            A: "a",
+            B: "b",
+            C: "c",
+            D: "d"
+        },
+        correctAnswer: "idkyet"
+    },
+    {
+        Question2: "question5",
+        answers: {
+            A: "a",
+            B: "b",
+            C: "c",
+            D: "d"
+        },
+        correctAnswer: "idkyet"
+    }
+]
