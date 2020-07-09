@@ -1,21 +1,19 @@
 //start button that begins the game
 var sButton = document.querySelector("#sButton");
+var timer = document.querySelector("#timer");
 
 var secondsLeft = 60;
 
-sButton.eventListener("click") function gameTimer(event)  {
+sButton.addEventListener("click", function gameTimer()  {
     var timerStart = setInterval(function() {
-        secondsLeft--
-
-
-
-
-    },1000)
+        secondsLeft--;
+        timer.textContent = secondsLeft;
         
-        
-        
-
-}
+        if(secondsLeft === 0) {
+            clearInterval(timerStart);
+        }
+    }, 1000)
+})
 
 //timer starts with the first presented question on Javascript fundamentals
 //multple choices presented on first question
