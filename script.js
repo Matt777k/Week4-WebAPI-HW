@@ -120,7 +120,41 @@ function buildQuiz(){
     quizContainer.innerHTML = output.join('');
     console.log(output);
 }
-function showResults(){}
+
+function showResults(){
+
+    //gather answer containers from our quiz
+    var answerContainers = quizContainer.querySelectorAll('.answers');
+
+    //keep track of user's answers
+    var numCorrect = 0;
+
+    //for each question
+    myQuestions.forEach( (currentQuestion, questionNumber) => {
+
+        //find selected answer
+        var answerContainer = answerContainers[questionNumber];
+        var selector = `input[name=question${questionNumber}]:checked`;
+        var userAnswer = (answerContainer.querySelector(selector)  || {}).value;
+
+        //if answer is correct 
+        if(userAnswer === currentQuestion.correctAnswer) {
+            //add to the number of correct answers
+            numCorrect++;
+
+            //color the answers green 
+            answerContainers[questionNumber].style.color = "lightgreen";
+        }
+        //if answer is wrong
+        else {
+            //color answers red
+            answerContainers[questionNumber].style.color = "red";
+        }
+    });
+
+    //show number of correct answers out of total
+    resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+}
 
 
 
