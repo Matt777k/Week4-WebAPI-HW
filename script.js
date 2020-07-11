@@ -88,13 +88,19 @@ function buildQuiz(){
     //variable to store the html output
     var output = [];
 
+    output.push(
+        `<div class="slide">
+         <div class="question"> ${currentQuestion.question} </div>
+         <div class="answers"> ${answers.join("")} </div>
+         </div>`
+    );
+
     //for each question...
     myQuestions.forEach(
         (currentQuestion, questionNumber) => {
 
             //variable to store the list of possible answers
             var answers = [];
-
             //and for each availble answer...
             for(letter in currentQuestion.answers){
 
