@@ -88,12 +88,7 @@ function buildQuiz(){
     //variable to store the html output
     var output = [];
 
-    output.push(
-        `<div class="slide">
-         <div class="question"> ${currentQuestion.question} </div>
-         <div class="answers"> ${answers.join("")} </div>
-         </div>`
-    );
+    
 
     //for each question...
     myQuestions.forEach(
@@ -118,6 +113,13 @@ function buildQuiz(){
             output.push(
                 `<div class="question"> ${currentQuestion.question} </div>
                 <div class="answers"> ${answers.join('')} </div>`
+            );
+
+            output.push(
+                `<div class="slide">
+                 <div class="question"> ${currentQuestion.question} </div>
+                 <div class="answers"> ${answers.join("")} </div>
+                 </div>`
             );
         }
     );
@@ -162,9 +164,46 @@ function showResults(){
     resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
 }
 
+function showSlide(n) {
+    slides[currentSlide].classList.remove("active-slide");
+    slides[n].classList.add("active-slide");
+    currentSlide = n;
 
-
+    if(currentSlide === 0){
+        previousButton.style.display = "none";
+    }
+    else {
+        previousButton.style.display = "inline-block";
+    }
+    if(currentSlide === slides.length -1) {
+        nextButton.style.display = "none";
+        submitButton.style.display = "inline-block";
+    }
+    else {
+        nextButton.style.length.display = "inline-block";
+        submitButton.style.display = "none";
+    }
+}
 
 buildQuiz();
 
+function showNextSlide(){
+    showSlide(currentSlide + 1);
+}
+
+function showPreviousSlide(){
+    showSlide(currentSlide -1);
+}
+
+ //Pagination
+ var previousButton = document.getElementById("previous");
+ var nextButton = document.getElementById("next");
+ var slides = document.querySelectorAll(".slide");
+ var currentSlide = 0;
+
+ showSlide(currentSlide);
+
+ //event listeners
 submitButton.addEventListener("click", showResults);
+previousButton.addEventListener("click", showPreviousSlide);
+nextButton.addEventListener("click", showNextSlide);
