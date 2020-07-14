@@ -150,6 +150,9 @@ function showResults() {
     else {
       //color answers red
       answerContainers[questionNumber].style.color = "red";
+      secondsLeft = secondsLeft - 10;
+      console.log(secondsLeft);
+      timer.textContent = secondsLeft;
     }
   });
 
