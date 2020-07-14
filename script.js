@@ -61,17 +61,21 @@ var myQuestions = [
 
 var secondsLeft = 60;
 
-sButton.addEventListener("click", function gameTimer() {
+function gameTimer() {
   var timerStart = setInterval(function () {
     secondsLeft--;
     timer.textContent = secondsLeft;
 
     if (secondsLeft === 0) {
-      alert("Game Over");
       clearInterval(timerStart);
+      alert("Game Over");
+      location.reload();
     }
+    else if(submitButton.onclick = function() {
+        clearInterval(timerStart);
+    });
   }, 1000);
-});
+};
 
 //timer starts with the first presented question on Javascript fundamentals
 //multple choices presented on first question
@@ -194,8 +198,10 @@ function showPreviousSlide() {
 }
 
 //event listeners
+sButton.addEventListener("click", gameTimer);
 //sButton.addEventListener("click", showSlide);
 submitButton.addEventListener("click", showResults);
+//submitButton.addEventListener("click", gameTimer);
 previousButton.addEventListener("click", showPreviousSlide);
 nextButton.addEventListener("click", showNextSlide);
 
