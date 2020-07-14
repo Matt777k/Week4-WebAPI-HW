@@ -5,56 +5,57 @@ var timer = document.querySelector("#timer");
 var quizContainer = document.querySelector("#quiz");
 var resultsContainer = document.querySelector("#results");
 var submitButton = document.querySelector("#submit");
+var scoreButton = document.querySelector("#score");
 var myQuestions = [
   {
-    question: "question",
+    question: "Which of the following is NOT a Javascript data type?",
     answers: {
-      A: "a",
-      B: "b",
-      C: "c",
-      D: "d",
+      A: "Boolean",
+      B: "Number",
+      C: "Letter",
+      D: "String",
     },
-    correctAnswer: "idkyet",
+    correctAnswer: "C",
   },
   {
-    question: "question2",
+    question: "Which company developed Javascript?",
     answers: {
-      A: "a",
-      B: "b",
-      C: "c",
-      D: "d",
+      A: "Oracle",
+      B: "Angelfire",
+      C: "AltaVista",
+      D: "Netscape",
     },
-    correctAnswer: "idkyet",
+    correctAnswer: "D",
   },
   {
-    question: "question3",
+    question: "What is 'this' keyword in Javascript?",
     answers: {
-      A: "a",
-      B: "b",
-      C: "c",
-      D: "d",
+      A: "this keyword refers to the object from where it was called",
+      B: "this keyword refers to the previous function",
+      C: "this keyword refers to a number within and object",
+      D: "this keyword links a function to the HTML",
     },
-    correctAnswer: "idkyet",
+    correctAnswer: "A",
   },
   {
-    question: "question4",
+    question: "What of the following is NOT a looping structure in Javascript",
     answers: {
-      A: "a",
-      B: "b",
-      C: "c",
-      D: "d",
+      A: "for",
+      B: "while",
+      C: "do-while",
+      D: "else",
     },
-    correctAnswer: "idkyet",
+    correctAnswer: "D",
   },
   {
-    question: "question5",
+    question: "What is the use of Push method in Javascript?" ,
     answers: {
-      A: "a",
-      B: "b",
-      C: "c",
-      D: "d",
+      A: "Used to send the latest save file to your Github",
+      B: "Used to merge two or more arrays",
+      C: "Used to add or append one or more elements to the end of an Array",
+      D: "Used to add a new element to an the HTML file",
     },
-    correctAnswer: "idkyet",
+    correctAnswer: "C",
   },
 ];
 
@@ -66,6 +67,7 @@ sButton.addEventListener("click", function gameTimer() {
     timer.textContent = secondsLeft;
 
     if (secondsLeft === 0) {
+      alert("Game Over");
       clearInterval(timerStart);
     }
   }, 1000);
@@ -151,6 +153,7 @@ function showResults() {
   resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
 }
 
+
 function showSlide(n) {
   slides[currentSlide].classList.remove("active-slide");
   slides[n].classList.add("active-slide");
@@ -164,9 +167,11 @@ function showSlide(n) {
   if (currentSlide === slides.length - 1) {
     nextButton.style.display = "none";
     submitButton.style.display = "inline-block";
+    scoreButton.style.display = "inline-block";
   } else {
     nextButton.style.length.display = "inline-block";
     submitButton.style.display = "none";
+    scoreButton.style.display = "none";
   }
 }
 
@@ -189,6 +194,7 @@ function showPreviousSlide() {
 }
 
 //event listeners
+//sButton.addEventListener("click", showSlide);
 submitButton.addEventListener("click", showResults);
 previousButton.addEventListener("click", showPreviousSlide);
 nextButton.addEventListener("click", showNextSlide);
