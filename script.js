@@ -6,6 +6,10 @@ var quizContainer = document.querySelector("#quiz");
 var resultsContainer = document.querySelector("#results");
 var submitButton = document.querySelector("#submit");
 var scoreButton = document.querySelector("#score");
+var msgDiv = document.querySelector("#msg");
+var userInitialsSpan = document.querySelector("#user-initials");
+var userScoreSpan = document.querySelector("#user-score");
+var scoreboard = [];
 var myQuestions = [
   {
     question: "Which of the following is NOT a Javascript data type?",
@@ -66,7 +70,7 @@ function gameTimer() {
     secondsLeft--;
     timer.textContent = secondsLeft;
 
-    if (secondsLeft === 0) {
+    if (secondsLeft === 0 || secondsLeft === 60) {
       clearInterval(timerStart);
       alert("Game Over");
       location.reload();
@@ -77,17 +81,15 @@ function gameTimer() {
   }, 1000);
 };
 
-//timer starts with the first presented question on Javascript fundamentals
-//multple choices presented on first question
+//timer starts with start button and first question presented on Javascript fundamentals
+//multple choices presented on each question
 //user clicks their answer
 //answers that are incorrect subtract time from the timer
-//displays whether answer selected was correct or incorrect
-//proceeds to next question after an answer is selected
+//proceeds to next question after an answer is selected and next question button is pressed
 //game ends when timer reaches 0 or user answers all questions
 //user can save their initials and their score to scoreboard
 //prompt box with intitial and submit button
-//displays scoreboard with buttons to chose "Go back" or "Clear high scores"
-//**ensure it adapts to multiple screen sizes
+//displays scoreboard with previous high score 
 
 function buildQuiz() {
   //variable to store the html output
@@ -153,6 +155,7 @@ function showResults() {
       secondsLeft = secondsLeft - 10;
       console.log(secondsLeft);
       timer.textContent = secondsLeft;
+      alert("Subtracted 10 seconds for your incorrect answer!");
     }
   });
 
@@ -207,4 +210,38 @@ submitButton.addEventListener("click", showResults);
 //submitButton.addEventListener("click", gameTimer);
 previousButton.addEventListener("click", showPreviousSlide);
 nextButton.addEventListener("click", showNextSlide);
+
+
+function displayMessage(type, message) {
+    msgDiv.textContent = message;
+    msgDiv.setAttribute("class", type);
+  }
+
+  function renderLastRegistered() {
+    var scoreInitials = localStorage.getItem("scoreInitials");
+    var secondsLeft = localStorage.getItem("secondsLeft");
+  
+    if (!scoreInitials || !secondsLeft) {
+      return;
+    }
+
+    userInitialsSpan.textContent = scoreInitials;
+    userScoreSpan.textContent = secondsLeft;
+  }
+
+scoreButton.addEventListener("click", function(event) {
+    event.preventDefault();
+  
+    var scoreInitials = document.querySelector("#initials").value;
+  
+    if (scoreInitials === "") {
+      displayMessage("error", "Initials cannot be blank");
+    } else {
+      displayMessage("success", "Registered successfully");
+  
+      localStorage.setItem("scoreInitials", scoreInitials);
+      localStorage.setItem("secondsLeft", secondsLeft);
+      renderLastRegistered();
+    }
+  });
 

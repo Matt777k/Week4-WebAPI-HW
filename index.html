@@ -19,6 +19,18 @@
       <div id="results"></div>
       <button id="score">Submit Highscore</button>
 
+      <form method="POST">
+        <div class="input-group">
+          <label for="initials">Initials</label>
+          <input type="text" name="initials" id="initials" placeholder="Initials here" />
+        </div>
+        <div id="msg"></div>
+
+        <div class="card">
+            <h2>Last High Score:</h2>
+            <p><strong>Initials:</strong> <span id="user-initials"></span></p>
+            <p><strong>Highscore:</strong> <span id="user-score"></span></p>
+          </div>
 </body>
 <script src="script.js"></script>
 </html>
